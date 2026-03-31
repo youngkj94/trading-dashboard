@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Bot Dashboard</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                background:#0f1117; color:#e1e4e8; min-height:100vh; padding:24px; }
+        h1 { font-size:28px; font-weight:700; margin-bottom:4px; color:#ffffff; }
+        .subtitle { color:#8b949e; margin-bottom:32px; font-size:14px; }
+        .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+                 gap:16px; margin-bottom:32px; }
+        .card { background:#161b22; border:1px solid #30363d; border-radius:12px;
+                 padding:20px; }
+        .card .label { font-size:12px; color:#8b949e; text-transform:uppercase;
+                        letter-spacing:0.5px; margin-bottom:8px; }
+        .card .value { font-size:28px; font-weight:700; color:#ffffff; }
+        .card .sub { font-size:12px; color:#8b949e; margin-top:4px; }
+        .card.green .value { color:#2ecc71; }
+        .card.red .value { color:#e74c3c; }
+        .card.blue .value { color:#3498db; }
+        .card.yellow .value { color:#f1c40f; }
+        .section { background:#161b22; border:1px solid #30363d; border-radius:12px;
+                    padding:24px; margin-bottom:24px; }
+        .section h2 { font-size:18px; font-weight:600; margin-bottom:16px;
+                       color:#ffffff; border-bottom:1px solid #30363d;
+                       padding-bottom:12px; }
+        table { width:100%; border-collapse:collapse; }
+        th { text-align:left; padding:8px 12px; font-size:12px; color:#8b949e;
+              text-transform:uppercase; letter-spacing:0.5px;
+              border-bottom:1px solid #30363d; }
+        td { padding:10px 12px; font-size:14px; border-bottom:1px solid #21262d; }
+        tr:last-child td { border-bottom:none; }
+        tr:hover td { background:#1c2128; }
+        .footer { text-align:center; color:#8b949e; font-size:12px;
+                   margin-top:32px; padding:16px; }
+    </style>
+</head>
+<body>
+    <h1>📈 Trading Bot Dashboard</h1>
+    <p class="subtitle">Generated: 2026-03-31 14:33:08 | Scheduled runs only</p>
+
+    <!-- Key Metrics -->
+    <div class="grid">
+        <div class="card blue">
+            <div class="label">Win Rate</div>
+            <div class="value">0%</div>
+            <div class="sub">0W / 0L</div>
+        </div>
+        <div class="card blue">
+            <div class="label">Avg Return</div>
+            <div class="value">0%</div>
+            <div class="sub">per trade</div>
+        </div>
+        <div class="card green">
+            <div class="label">Best Trade</div>
+            <div class="value">0%</div>
+            <div class="sub">single trade</div>
+        </div>
+        <div class="card red">
+            <div class="label">Worst Trade</div>
+            <div class="value">0%</div>
+            <div class="sub">single trade</div>
+        </div>
+        <div class="card blue">
+            <div class="label">Total Signals</div>
+            <div class="value">256</div>
+            <div class="sub">scheduled runs</div>
+        </div>
+        <div class="card yellow">
+            <div class="label">Missed Wins</div>
+            <div class="value">2</div>
+            <div class="sub">threshold too high?</div>
+        </div>
+        <div class="card green">
+            <div class="label">Correct Passes</div>
+            <div class="value">2</div>
+            <div class="sub">avoided losses</div>
+        </div>
+        <div class="card blue">
+            <div class="label">Trades Placed</div>
+            <div class="value">0</div>
+            <div class="sub">total executed</div>
+        </div>
+    </div>
+
+    <!-- Recent Trades -->
+    <div class="section">
+        <h2>💼 Recent Trades</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Entry</th>
+                    <th>Exit</th>
+                    <th>Outcome</th>
+                    <th>Return</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody><tr><td colspan="6" style="text-align:center;color:#95a5a6">No completed trades yet</td></tr></tbody>
+        </table>
+    </div>
+
+    <!-- Missed Wins -->
+    <div class="section">
+        <h2>😬 Missed Wins — Threshold Calibration Data</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Probability</th>
+                    <th>Signal Price</th>
+                    <th>Close Price</th>
+                    <th>Change</th>
+                    <th>Gap to 0.75</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><strong>HKIT</strong></td>
+                <td>0.2285</td>
+                <td>$0.0694</td>
+                <td>$0.0718</td>
+                <td style="color:#2ecc71">+3.46%</td>
+                <td>0.5215</td>
+                <td>2026-03-31</td>
+            </tr>
+            <tr>
+                <td><strong>MASK</strong></td>
+                <td>0.4854</td>
+                <td>$2.81</td>
+                <td>$2.895</td>
+                <td style="color:#2ecc71">+3.02%</td>
+                <td>0.2646</td>
+                <td>2026-03-31</td>
+            </tr></tbody>
+        </table>
+    </div>
+
+    <!-- Top Signals -->
+    <div class="section">
+        <h2>🎯 Top Signals by Probability</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Avg Probability</th>
+                    <th>Avg Sentiment</th>
+                    <th>Appearances</th>
+                    <th>Last Outcome</th>
+                </tr>
+            </thead>
+            <tbody>
+        <tr>
+            <td><strong>MASK</strong></td>
+            <td>0.4854</td>
+            <td style="color:#2ecc71">0.7207</td>
+            <td>3</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>U</strong></td>
+            <td>0.4472</td>
+            <td style="color:#2ecc71">0.2468</td>
+            <td>4</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>BAC</strong></td>
+            <td>0.4163</td>
+            <td style="color:#2ecc71">0.5827</td>
+            <td>3</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>PFE</strong></td>
+            <td>0.4075</td>
+            <td style="color:#2ecc71">0.5889</td>
+            <td>5</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>LDOS</strong></td>
+            <td>0.4054</td>
+            <td style="color:#2ecc71">0.5207</td>
+            <td>1</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>TE</strong></td>
+            <td>0.4015</td>
+            <td style="color:#2ecc71">0.023</td>
+            <td>3</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>KIDZ</strong></td>
+            <td>0.4015</td>
+            <td style="color:#2ecc71">0.423</td>
+            <td>3</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>VG</strong></td>
+            <td>0.3981</td>
+            <td style="color:#2ecc71">0.4162</td>
+            <td>3</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>CDE</strong></td>
+            <td>0.3971</td>
+            <td style="color:#2ecc71">0.5441</td>
+            <td>3</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>HAL</strong></td>
+            <td>0.3885</td>
+            <td style="color:#2ecc71">0.3071</td>
+            <td>1</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td><strong>CAT</strong></td>
+            <td>0.3828</td>
+            <td style="color:#2ecc71">0.1356</td>
+            <td>1</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>BTG</strong></td>
+            <td>0.3537</td>
+            <td style="color:#2ecc71">0.4574</td>
+            <td>3</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>GLW</strong></td>
+            <td>0.3467</td>
+            <td style="color:#2ecc71">0.5034</td>
+            <td>1</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>RKLB</strong></td>
+            <td>0.3295</td>
+            <td style="color:#2ecc71">0.319</td>
+            <td>4</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>EA</strong></td>
+            <td>0.325</td>
+            <td style="color:#95a5a6">0.0</td>
+            <td>1</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td><strong>BBD</strong></td>
+            <td>0.3211</td>
+            <td style="color:#2ecc71">0.3921</td>
+            <td>3</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>PEPG</strong></td>
+            <td>0.3161</td>
+            <td style="color:#2ecc71">0.2521</td>
+            <td>3</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>BP</strong></td>
+            <td>0.3145</td>
+            <td style="color:#2ecc71">0.379</td>
+            <td>3</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr>
+        <tr>
+            <td><strong>URI</strong></td>
+            <td>0.3143</td>
+            <td style="color:#2ecc71">0.3785</td>
+            <td>1</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td><strong>NU</strong></td>
+            <td>0.3115</td>
+            <td style="color:#e74c3c">-0.0271</td>
+            <td>3</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <!-- Outcome Breakdown -->
+    <div class="section">
+        <h2>📊 Outcome Breakdown</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Outcome</th>
+                    <th>Count</th>
+                    <th>Avg Price Change</th>
+                </tr>
+            </thead>
+            <tbody>
+        <tr>
+            <td>➖ <span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NEUTRAL</span></td>
+            <td>141</td>
+            <td style="color:#2ecc71">0.08%</td>
+        </tr>
+        <tr>
+            <td>❓ <span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+            <td>108</td>
+            <td style="color:#95a5a6">None%</td>
+        </tr>
+        <tr>
+            <td>😬 <span style="background:#e67e22;color:white;padding:2px 8px;border-radius:4px;font-size:12px">MISSED_WIN</span></td>
+            <td>2</td>
+            <td style="color:#2ecc71">3.24%</td>
+        </tr>
+        <tr>
+            <td>✅ <span style="background:#2ecc71;color:white;padding:2px 8px;border-radius:4px;font-size:12px">CORRECT_PASS</span></td>
+            <td>2</td>
+            <td style="color:#e74c3c">-3.19%</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <!-- Daily Stats -->
+    <div class="section">
+        <h2>📅 Daily Signal History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Signals</th>
+                    <th>Avg Probability</th>
+                    <th>Avg Sentiment</th>
+                </tr>
+            </thead>
+            <tbody>
+        <tr>
+            <td>2026-03-31</td>
+            <td>256</td>
+            <td>0.1815</td>
+            <td style="color:#2ecc71">0.0455</td>
+        </tr></tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        TradingBot Performance Dashboard • 2026-03-31 14:33:08 •
+        Data from scheduled runs only • Paper trading
+    </div>
+</body>
+</html>
