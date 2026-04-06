@@ -10,124 +10,259 @@
                 background:#0f1117; color:#e1e4e8; min-height:100vh; padding:24px; }
         h1 { font-size:28px; font-weight:700; margin-bottom:4px; color:#ffffff; }
         .subtitle { color:#8b949e; margin-bottom:32px; font-size:14px; }
-        .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+        .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
                  gap:16px; margin-bottom:32px; }
-        .card { background:#161b22; border:1px solid #30363d; border-radius:12px;
-                 padding:20px; }
+        .card { background:#161b22; border:1px solid #30363d; border-radius:12px; padding:20px; }
         .card .label { font-size:12px; color:#8b949e; text-transform:uppercase;
                         letter-spacing:0.5px; margin-bottom:8px; }
         .card .value { font-size:28px; font-weight:700; color:#ffffff; }
         .card .sub { font-size:12px; color:#8b949e; margin-top:4px; }
         .card.green .value { color:#2ecc71; }
-        .card.red .value { color:#e74c3c; }
-        .card.blue .value { color:#3498db; }
+        .card.red   .value { color:#e74c3c; }
+        .card.blue  .value { color:#3498db; }
         .card.yellow .value { color:#f1c40f; }
+        .card.grey  .value { color:#555555; }
         .section { background:#161b22; border:1px solid #30363d; border-radius:12px;
                     padding:24px; margin-bottom:24px; }
-        .section h2 { font-size:18px; font-weight:600; margin-bottom:16px;
-                       color:#ffffff; border-bottom:1px solid #30363d;
-                       padding-bottom:12px; }
+        .section h2 { font-size:18px; font-weight:600; margin-bottom:16px; color:#ffffff;
+                       border-bottom:1px solid #30363d; padding-bottom:12px; }
+        .note { font-size:12px; color:#8b949e; margin-bottom:12px; }
         table { width:100%; border-collapse:collapse; }
         th { text-align:left; padding:8px 12px; font-size:12px; color:#8b949e;
-              text-transform:uppercase; letter-spacing:0.5px;
-              border-bottom:1px solid #30363d; }
+              text-transform:uppercase; letter-spacing:0.5px; border-bottom:1px solid #30363d; }
         td { padding:10px 12px; font-size:14px; border-bottom:1px solid #21262d; }
         tr:last-child td { border-bottom:none; }
         tr:hover td { background:#1c2128; }
-        .footer { text-align:center; color:#8b949e; font-size:12px;
-                   margin-top:32px; padding:16px; }
+        .footer { text-align:center; color:#8b949e; font-size:12px; margin-top:32px; padding:16px; }
     </style>
 </head>
 <body>
     <h1>📈 Trading Bot Dashboard</h1>
-    <p class="subtitle">Generated: 2026-03-31 14:33:08 | Scheduled runs only</p>
+    <p class="subtitle">Generated: 2026-04-06 17:23:49 | Scheduled runs only | Threshold: 55.0%</p>
 
-    <!-- Key Metrics -->
     <div class="grid">
         <div class="card blue">
             <div class="label">Win Rate</div>
-            <div class="value">0%</div>
-            <div class="sub">0W / 0L</div>
+            <div class="value">0.0%</div>
+            <div class="sub">0W / 2L / 1BE</div>
         </div>
-        <div class="card blue">
+        <div class="card red">
             <div class="label">Avg Return</div>
-            <div class="value">0%</div>
+            <div class="value">-1.34%</div>
             <div class="sub">per trade</div>
         </div>
-        <div class="card green">
+        <div class="card blue">
             <div class="label">Best Trade</div>
             <div class="value">0%</div>
             <div class="sub">single trade</div>
         </div>
         <div class="card red">
             <div class="label">Worst Trade</div>
-            <div class="value">0%</div>
+            <div class="value">-2.59%</div>
             <div class="sub">single trade</div>
         </div>
         <div class="card blue">
+            <div class="label">Trades Placed</div>
+            <div class="value">3</div>
+            <div class="sub">3 signals acted on</div>
+        </div>
+        <div class="card blue">
             <div class="label">Total Signals</div>
-            <div class="value">256</div>
+            <div class="value">626</div>
             <div class="sub">scheduled runs</div>
         </div>
         <div class="card yellow">
             <div class="label">Missed Wins</div>
-            <div class="value">2</div>
-            <div class="sub">threshold too high?</div>
+            <div class="value">22</div>
+            <div class="sub">below threshold, moved 2%+</div>
         </div>
         <div class="card green">
             <div class="label">Correct Passes</div>
-            <div class="value">2</div>
-            <div class="sub">avoided losses</div>
+            <div class="value">24</div>
+            <div class="sub">avoided, dropped 2%+</div>
         </div>
-        <div class="card blue">
-            <div class="label">Trades Placed</div>
-            <div class="value">0</div>
-            <div class="sub">total executed</div>
+        <div class="card grey">
+            <div class="label">No Price Data</div>
+            <div class="value">178</div>
+            <div class="sub">price fetch failed at EOD</div>
         </div>
     </div>
 
-    <!-- Recent Trades -->
     <div class="section">
         <h2>💼 Recent Trades</h2>
         <table>
-            <thead>
-                <tr>
-                    <th>Ticker</th>
-                    <th>Entry</th>
-                    <th>Exit</th>
-                    <th>Outcome</th>
-                    <th>Return</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody><tr><td colspan="6" style="text-align:center;color:#95a5a6">No completed trades yet</td></tr></tbody>
+            <thead><tr>
+                <th>Ticker</th><th>Entry</th><th>Exit</th>
+                <th>Outcome</th><th>Return</th><th>Date</th>
+            </tr></thead>
+            <tbody>
+            <tr>
+                <td><strong>ONDS</strong></td>
+                <td>$9.84</td>
+                <td>$9.7</td>
+                <td><span style="background:#3498db;color:white;padding:2px 8px;border-radius:4px;font-size:12px">CLOSED_BY_ALPACA</span></td>
+                <td style="color:#e74c3c">-1.4228%</td>
+                <td>2026-04-06</td>
+            </tr>
+            <tr>
+                <td><strong>LUNR</strong></td>
+                <td>$23.98</td>
+                <td>$23.98</td>
+                <td><span style="background:#3498db;color:white;padding:2px 8px;border-radius:4px;font-size:12px">CLOSED_BY_ALPACA</span></td>
+                <td style="color:#95a5a6">0.0%</td>
+                <td>2026-04-03</td>
+            </tr>
+            <tr>
+                <td><strong>TURB</strong></td>
+                <td>$3.47</td>
+                <td>$3.38</td>
+                <td><span style="background:#e74c3c;color:white;padding:2px 8px;border-radius:4px;font-size:12px">STOP_LOSS</span></td>
+                <td style="color:#e74c3c">-2.5937%</td>
+                <td>2026-04-02</td>
+            </tr></tbody>
         </table>
     </div>
 
-    <!-- Missed Wins -->
     <div class="section">
-        <h2>😬 Missed Wins — Threshold Calibration Data</h2>
+        <h2>😬 Missed Wins — Threshold Calibration</h2>
+        <p class="note">Signals that moved 2%+ in the right direction but scored below the 55.0% threshold.
+        Gap column shows how far below threshold. Article age colour: green &lt;2h, yellow &lt;8h, red older.</p>
         <table>
-            <thead>
-                <tr>
-                    <th>Ticker</th>
-                    <th>Probability</th>
-                    <th>Signal Price</th>
-                    <th>Close Price</th>
-                    <th>Change</th>
-                    <th>Gap to 0.75</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
+            <thead><tr>
+                <th>Ticker</th><th>Probability</th><th>Signal Price</th>
+                <th>Close Price</th><th>Change</th>
+                <th>Gap to 55.0%</th><th>Article Age</th><th>Date</th>
+            </tr></thead>
             <tbody>
+            <tr>
+                <td><strong>SNAP</strong></td>
+                <td>0.1913</td>
+                <td>$4.64</td>
+                <td>$4.91</td>
+                <td style="color:#2ecc71">+5.82%</td>
+                <td style="color:#e74c3c">0.3587</td>
+                <td>—</td>
+                <td>2026-04-01</td>
+            </tr>
+            <tr>
+                <td><strong>SNAP</strong></td>
+                <td>0.1913</td>
+                <td>$4.64</td>
+                <td>$4.91</td>
+                <td style="color:#2ecc71">+5.82%</td>
+                <td style="color:#e74c3c">0.3587</td>
+                <td>—</td>
+                <td>2026-04-01</td>
+            </tr>
+            <tr>
+                <td><strong>TH</strong></td>
+                <td>0.5129</td>
+                <td>$12.055</td>
+                <td>$12.67</td>
+                <td style="color:#2ecc71">+5.1%</td>
+                <td style="color:#2ecc71">0.0371</td>
+                <td>—</td>
+                <td>2026-04-01</td>
+            </tr>
+            <tr>
+                <td><strong>TH</strong></td>
+                <td>0.5129</td>
+                <td>$12.055</td>
+                <td>$12.67</td>
+                <td style="color:#2ecc71">+5.1%</td>
+                <td style="color:#2ecc71">0.0371</td>
+                <td>—</td>
+                <td>2026-04-01</td>
+            </tr>
+            <tr>
+                <td><strong>MU</strong></td>
+                <td>0.3117</td>
+                <td>$350.155</td>
+                <td>$367.89</td>
+                <td style="color:#2ecc71">+5.06%</td>
+                <td style="color:#e74c3c">0.2383</td>
+                <td>—</td>
+                <td>2026-04-01</td>
+            </tr>
+            <tr>
+                <td><strong>MU</strong></td>
+                <td>0.3117</td>
+                <td>$350.155</td>
+                <td>$367.89</td>
+                <td style="color:#2ecc71">+5.06%</td>
+                <td style="color:#e74c3c">0.2383</td>
+                <td>—</td>
+                <td>2026-04-01</td>
+            </tr>
+            <tr>
+                <td><strong>MRVL</strong></td>
+                <td>0.3024</td>
+                <td>$102.435</td>
+                <td>$106.71</td>
+                <td style="color:#2ecc71">+4.17%</td>
+                <td style="color:#e74c3c">0.2476</td>
+                <td>—</td>
+                <td>2026-04-01</td>
+            </tr>
+            <tr>
+                <td><strong>MRVL</strong></td>
+                <td>0.3024</td>
+                <td>$102.435</td>
+                <td>$106.71</td>
+                <td style="color:#2ecc71">+4.17%</td>
+                <td style="color:#e74c3c">0.2476</td>
+                <td>—</td>
+                <td>2026-04-01</td>
+            </tr>
+            <tr>
+                <td><strong>SPCE</strong></td>
+                <td>0.3151</td>
+                <td>$2.92</td>
+                <td>$3.03</td>
+                <td style="color:#2ecc71">+3.77%</td>
+                <td style="color:#e74c3c">0.2349</td>
+                <td><span style="color:#e74c3c">131h</span></td>
+                <td>2026-04-06</td>
+            </tr>
             <tr>
                 <td><strong>HKIT</strong></td>
                 <td>0.2285</td>
                 <td>$0.0694</td>
                 <td>$0.0718</td>
                 <td style="color:#2ecc71">+3.46%</td>
-                <td>0.5215</td>
+                <td style="color:#e74c3c">0.3215</td>
+                <td>—</td>
                 <td>2026-03-31</td>
+            </tr>
+            <tr>
+                <td><strong>DECK</strong></td>
+                <td>0.2339</td>
+                <td>$98.44</td>
+                <td>$101.61</td>
+                <td style="color:#2ecc71">+3.22%</td>
+                <td style="color:#e74c3c">0.3161</td>
+                <td><span style="color:#e74c3c">112h</span></td>
+                <td>2026-04-06</td>
+            </tr>
+            <tr>
+                <td><strong>BKNG</strong></td>
+                <td>0.4217</td>
+                <td>$170.73</td>
+                <td>$176.2</td>
+                <td style="color:#2ecc71">+3.2%</td>
+                <td style="color:#f1c40f">0.1283</td>
+                <td><span style="color:#e74c3c">110h</span></td>
+                <td>2026-04-06</td>
+            </tr>
+            <tr>
+                <td><strong>SNDK</strong></td>
+                <td>0.0963</td>
+                <td>$671.84</td>
+                <td>$692.79</td>
+                <td style="color:#2ecc71">+3.12%</td>
+                <td style="color:#e74c3c">0.4537</td>
+                <td>—</td>
+                <td>2026-04-01</td>
             </tr>
             <tr>
                 <td><strong>MASK</strong></td>
@@ -135,229 +270,295 @@
                 <td>$2.81</td>
                 <td>$2.895</td>
                 <td style="color:#2ecc71">+3.02%</td>
-                <td>0.2646</td>
+                <td style="color:#f1c40f">0.0646</td>
+                <td>—</td>
                 <td>2026-03-31</td>
+            </tr>
+            <tr>
+                <td><strong>HUM</strong></td>
+                <td>0.0723</td>
+                <td>$172.81</td>
+                <td>$176.97</td>
+                <td style="color:#2ecc71">+2.41%</td>
+                <td style="color:#e74c3c">0.4777</td>
+                <td>—</td>
+                <td>2026-04-01</td>
             </tr></tbody>
         </table>
     </div>
 
-    <!-- Top Signals -->
     <div class="section">
         <h2>🎯 Top Signals by Probability</h2>
         <table>
-            <thead>
-                <tr>
-                    <th>Ticker</th>
-                    <th>Avg Probability</th>
-                    <th>Avg Sentiment</th>
-                    <th>Appearances</th>
-                    <th>Last Outcome</th>
-                </tr>
-            </thead>
+            <thead><tr>
+                <th>Ticker</th><th>Avg Probability</th><th>Avg Sentiment</th>
+                <th>Appearances</th><th>Last Outcome</th><th>Avg Article Age</th>
+            </tr></thead>
             <tbody>
+        <tr>
+            <td><strong>LUNR</strong></td>
+            <td>0.7398</td>
+            <td style="color:#2ecc71">0.7451</td>
+            <td>1</td>
+            <td>—</td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td><strong>TURB</strong></td>
+            <td>0.7253</td>
+            <td style="color:#2ecc71">0.778</td>
+            <td>1</td>
+            <td><span style="background:#555555;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td><strong>MLEC</strong></td>
+            <td>0.5926</td>
+            <td style="color:#2ecc71">0.6767</td>
+            <td>1</td>
+            <td><span style="background:#2ecc71;color:white;padding:2px 8px;border-radius:4px;font-size:12px">CORRECT_TRADE</span></td>
+            <td><span style="color:#e74c3c">1742h</span></td>
+        </tr>
+        <tr>
+            <td><strong>EXC</strong></td>
+            <td>0.526</td>
+            <td style="color:#2ecc71">0.4672</td>
+            <td>1</td>
+            <td><span style="background:#555555;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td><strong>TH</strong></td>
+            <td>0.5129</td>
+            <td style="color:#2ecc71">0.2458</td>
+            <td>2</td>
+            <td><span style="background:#e67e22;color:white;padding:2px 8px;border-radius:4px;font-size:12px">MISSED_WIN</span></td>
+            <td>—</td>
+        </tr>
         <tr>
             <td><strong>MASK</strong></td>
             <td>0.4854</td>
             <td style="color:#2ecc71">0.7207</td>
             <td>3</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+            <td><span style="background:#555555;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td><strong>ALK</strong></td>
+            <td>0.4825</td>
+            <td style="color:#2ecc71">0.337</td>
+            <td>1</td>
+            <td>—</td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td><strong>MOBX</strong></td>
+            <td>0.4764</td>
+            <td style="color:#2ecc71">0.5234</td>
+            <td>1</td>
+            <td><span style="background:#555555;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td><strong>EXPE</strong></td>
+            <td>0.474</td>
+            <td style="color:#2ecc71">0.2786</td>
+            <td>1</td>
+            <td><span style="background:#555555;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td><strong>USB</strong></td>
+            <td>0.4662</td>
+            <td style="color:#2ecc71">0.4842</td>
+            <td>1</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NEUTRAL</span></td>
+            <td><span style="color:#e74c3c">106h</span></td>
+        </tr>
+        <tr>
+            <td><strong>SBAC</strong></td>
+            <td>0.4654</td>
+            <td style="color:#2ecc71">0.3611</td>
+            <td>1</td>
+            <td>—</td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td><strong>BRN</strong></td>
+            <td>0.4644</td>
+            <td style="color:#2ecc71">0.4069</td>
+            <td>1</td>
+            <td><span style="background:#555555;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td><strong>PFSA</strong></td>
+            <td>0.4607</td>
+            <td style="color:#2ecc71">0.382</td>
+            <td>1</td>
+            <td><span style="background:#2ecc71;color:white;padding:2px 8px;border-radius:4px;font-size:12px">CORRECT_PASS</span></td>
+            <td><span style="color:#e74c3c">1008h</span></td>
+        </tr>
+        <tr>
+            <td><strong>NTAP</strong></td>
+            <td>0.4589</td>
+            <td style="color:#2ecc71">0.3691</td>
+            <td>1</td>
+            <td><span style="background:#555555;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td><strong>WM</strong></td>
+            <td>0.4579</td>
+            <td style="color:#2ecc71">0.4457</td>
+            <td>1</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NEUTRAL</span></td>
+            <td><span style="color:#e74c3c">102h</span></td>
+        </tr>
+        <tr>
+            <td><strong>NEM</strong></td>
+            <td>0.4548</td>
+            <td style="color:#2ecc71">0.4362</td>
+            <td>1</td>
+            <td><span style="background:#555555;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td><strong>JBL</strong></td>
+            <td>0.4518</td>
+            <td style="color:#2ecc71">0.6535</td>
+            <td>1</td>
+            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NEUTRAL</span></td>
+            <td>—</td>
         </tr>
         <tr>
             <td><strong>U</strong></td>
             <td>0.4472</td>
             <td style="color:#2ecc71">0.2468</td>
             <td>4</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+            <td><span style="background:#555555;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+            <td>—</td>
         </tr>
         <tr>
-            <td><strong>BAC</strong></td>
-            <td>0.4163</td>
-            <td style="color:#2ecc71">0.5827</td>
-            <td>3</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-        </tr>
-        <tr>
-            <td><strong>PFE</strong></td>
-            <td>0.4075</td>
-            <td style="color:#2ecc71">0.5889</td>
-            <td>5</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-        </tr>
-        <tr>
-            <td><strong>LDOS</strong></td>
-            <td>0.4054</td>
-            <td style="color:#2ecc71">0.5207</td>
-            <td>1</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-        </tr>
-        <tr>
-            <td><strong>TE</strong></td>
-            <td>0.4015</td>
-            <td style="color:#2ecc71">0.023</td>
-            <td>3</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-        </tr>
-        <tr>
-            <td><strong>KIDZ</strong></td>
-            <td>0.4015</td>
-            <td style="color:#2ecc71">0.423</td>
-            <td>3</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-        </tr>
-        <tr>
-            <td><strong>VG</strong></td>
-            <td>0.3981</td>
-            <td style="color:#2ecc71">0.4162</td>
-            <td>3</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-        </tr>
-        <tr>
-            <td><strong>CDE</strong></td>
-            <td>0.3971</td>
-            <td style="color:#2ecc71">0.5441</td>
-            <td>3</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-        </tr>
-        <tr>
-            <td><strong>HAL</strong></td>
-            <td>0.3885</td>
-            <td style="color:#2ecc71">0.3071</td>
+            <td><strong>SLNO</strong></td>
+            <td>0.4353</td>
+            <td style="color:#2ecc71">0.1276</td>
             <td>1</td>
             <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NEUTRAL</span></td>
+            <td><span style="color:#e74c3c">14h</span></td>
         </tr>
         <tr>
-            <td><strong>CAT</strong></td>
-            <td>0.3828</td>
-            <td style="color:#2ecc71">0.1356</td>
-            <td>1</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-        </tr>
-        <tr>
-            <td><strong>BTG</strong></td>
-            <td>0.3537</td>
-            <td style="color:#2ecc71">0.4574</td>
-            <td>3</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-        </tr>
-        <tr>
-            <td><strong>GLW</strong></td>
-            <td>0.3467</td>
-            <td style="color:#2ecc71">0.5034</td>
-            <td>1</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-        </tr>
-        <tr>
-            <td><strong>RKLB</strong></td>
-            <td>0.3295</td>
-            <td style="color:#2ecc71">0.319</td>
-            <td>4</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-        </tr>
-        <tr>
-            <td><strong>EA</strong></td>
-            <td>0.325</td>
-            <td style="color:#95a5a6">0.0</td>
-            <td>1</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NEUTRAL</span></td>
-        </tr>
-        <tr>
-            <td><strong>BBD</strong></td>
-            <td>0.3211</td>
-            <td style="color:#2ecc71">0.3921</td>
-            <td>3</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-        </tr>
-        <tr>
-            <td><strong>PEPG</strong></td>
-            <td>0.3161</td>
-            <td style="color:#2ecc71">0.2521</td>
-            <td>3</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-        </tr>
-        <tr>
-            <td><strong>BP</strong></td>
-            <td>0.3145</td>
-            <td style="color:#2ecc71">0.379</td>
-            <td>3</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-        </tr>
-        <tr>
-            <td><strong>URI</strong></td>
-            <td>0.3143</td>
-            <td style="color:#2ecc71">0.3785</td>
-            <td>1</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NEUTRAL</span></td>
-        </tr>
-        <tr>
-            <td><strong>NU</strong></td>
-            <td>0.3115</td>
-            <td style="color:#e74c3c">-0.0271</td>
-            <td>3</td>
-            <td><span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+            <td><strong>BCG</strong></td>
+            <td>0.4277</td>
+            <td style="color:#2ecc71">0.3453</td>
+            <td>2</td>
+            <td><span style="background:#2ecc71;color:white;padding:2px 8px;border-radius:4px;font-size:12px">CORRECT_PASS</span></td>
+            <td>—</td>
         </tr></tbody>
         </table>
     </div>
 
-    <!-- Outcome Breakdown -->
     <div class="section">
         <h2>📊 Outcome Breakdown</h2>
         <table>
-            <thead>
-                <tr>
-                    <th>Outcome</th>
-                    <th>Count</th>
-                    <th>Avg Price Change</th>
-                </tr>
-            </thead>
+            <thead><tr><th>Outcome</th><th>Count</th><th>Avg Price Change</th></tr></thead>
             <tbody>
         <tr>
             <td>➖ <span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NEUTRAL</span></td>
-            <td>141</td>
-            <td style="color:#2ecc71">0.08%</td>
+            <td>307</td>
+            <td style="color:#2ecc71">0.06%</td>
         </tr>
         <tr>
-            <td>❓ <span style="background:#95a5a6;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
-            <td>108</td>
+            <td>❓ <span style="background:#555555;color:white;padding:2px 8px;border-radius:4px;font-size:12px">NO_PRICE_DATA</span></td>
+            <td>178</td>
             <td style="color:#95a5a6">None%</td>
         </tr>
         <tr>
-            <td>😬 <span style="background:#e67e22;color:white;padding:2px 8px;border-radius:4px;font-size:12px">MISSED_WIN</span></td>
-            <td>2</td>
-            <td style="color:#2ecc71">3.24%</td>
+            <td>✅ <span style="background:#2ecc71;color:white;padding:2px 8px;border-radius:4px;font-size:12px">CORRECT_PASS</span></td>
+            <td>24</td>
+            <td style="color:#e74c3c">-6.2%</td>
         </tr>
         <tr>
-            <td>✅ <span style="background:#2ecc71;color:white;padding:2px 8px;border-radius:4px;font-size:12px">CORRECT_PASS</span></td>
-            <td>2</td>
-            <td style="color:#e74c3c">-3.19%</td>
+            <td>😬 <span style="background:#e67e22;color:white;padding:2px 8px;border-radius:4px;font-size:12px">MISSED_WIN</span></td>
+            <td>22</td>
+            <td style="color:#2ecc71">3.55%</td>
+        </tr>
+        <tr>
+            <td>🏆 <span style="background:#2ecc71;color:white;padding:2px 8px;border-radius:4px;font-size:12px">CORRECT_TRADE</span></td>
+            <td>1</td>
+            <td style="color:#2ecc71">25.96%</td>
+        </tr>
+        <tr>
+            <td>🛡️ <span style="background:#3498db;color:white;padding:2px 8px;border-radius:4px;font-size:12px">CORRECT_AVOID</span></td>
+            <td>1</td>
+            <td style="color:#e74c3c">-3.4%</td>
         </tr></tbody>
         </table>
     </div>
 
-    <!-- Daily Stats -->
     <div class="section">
         <h2>📅 Daily Signal History</h2>
         <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Signals</th>
-                    <th>Avg Probability</th>
-                    <th>Avg Sentiment</th>
-                </tr>
-            </thead>
+            <thead><tr>
+                <th>Date</th><th>Signals</th><th>Avg Prob</th><th>Avg Sent</th>
+                <th>Missed Wins</th><th>Passes</th><th>Traded</th><th>No Data</th>
+            </tr></thead>
             <tbody>
+        <tr>
+            <td>2026-04-06</td>
+            <td>74</td>
+            <td>0.2894</td>
+            <td style="color:#2ecc71">0.0486</td>
+            <td style="color:#e67e22">6</td>
+            <td style="color:#2ecc71">7</td>
+            <td style="color:#3498db">1</td>
+            <td style="color:#555555">0</td>
+        </tr>
+        <tr>
+            <td>2026-04-03</td>
+            <td>75</td>
+            <td>0.3208</td>
+            <td style="color:#2ecc71">0.0495</td>
+            <td style="color:#e67e22">0</td>
+            <td style="color:#2ecc71">0</td>
+            <td style="color:#3498db">1</td>
+            <td style="color:#555555">0</td>
+        </tr>
+        <tr>
+            <td>2026-04-02</td>
+            <td>75</td>
+            <td>0.2907</td>
+            <td style="color:#e74c3c">-0.0154</td>
+            <td style="color:#e67e22">0</td>
+            <td style="color:#2ecc71">0</td>
+            <td style="color:#3498db">1</td>
+            <td style="color:#555555">70</td>
+        </tr>
+        <tr>
+            <td>2026-04-01</td>
+            <td>146</td>
+            <td>0.2078</td>
+            <td style="color:#2ecc71">0.0417</td>
+            <td style="color:#e67e22">14</td>
+            <td style="color:#2ecc71">15</td>
+            <td style="color:#3498db">0</td>
+            <td style="color:#555555">0</td>
+        </tr>
         <tr>
             <td>2026-03-31</td>
             <td>256</td>
             <td>0.1815</td>
             <td style="color:#2ecc71">0.0455</td>
+            <td style="color:#e67e22">2</td>
+            <td style="color:#2ecc71">2</td>
+            <td style="color:#3498db">0</td>
+            <td style="color:#555555">108</td>
         </tr></tbody>
         </table>
     </div>
 
     <div class="footer">
-        TradingBot Performance Dashboard • 2026-03-31 14:33:08 •
-        Data from scheduled runs only • Paper trading
+        TradingBot Performance Dashboard • 2026-04-06 17:23:49 • Threshold: 55.0% • Paper trading
     </div>
 </body>
 </html>
